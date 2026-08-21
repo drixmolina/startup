@@ -56,8 +56,8 @@ Suggested scopes:
 
 - `DATABASE_URL`: managed PostgreSQL connection string.
 - `EMAIL_API_KEY`: Resend API key.
-- `CONTACT_EMAIL`: inquiry recipient.
-- `FROM_EMAIL`: verified sender identity.
+- `CONTACT_RECIPIENT_EMAIL`: Gmail or other inbox that receives inquiries.
+- `EMAIL_FROM`: verified Resend sender identity or domain address.
 - `AI_API_KEY`: provider key for the AI route.
 - `AI_MODEL`: provider model name.
 - `AI_API_URL`: provider chat-completions URL.

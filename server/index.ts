@@ -10,10 +10,11 @@ import { healthRouter } from "./routes/health.js"
 
 const app = express()
 const port = Number(process.env.PORT ?? 8787)
-const allowedOrigins = (process.env.CORS_ORIGINS ?? process.env.CORS_ORIGIN ?? "http://localhost:8443,http://localhost:5173")
+const configuredOrigins = (process.env.CORS_ORIGINS ?? process.env.CORS_ORIGIN ?? "")
 	.split(/[;,]/)
 	.map((origin) => origin.trim().replace(/\/$/, ""))
 	.filter(Boolean)
+const allowedOrigins = configuredOrigins.length > 0 ? configuredOrigins : ["http://localhost:8443", "http://127.0.0.1:8443", "http://localhost:5173"]
 const corsOptions: cors.CorsOptions = {
 	origin: (origin, callback) => {
 		if (!origin || allowedOrigins.includes(origin)) return callback(null, true)
