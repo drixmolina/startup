@@ -8,7 +8,7 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
   try {
     response = await fetch(`${apiBase}${path}`, { ...options, headers })
   } catch {
-    throw new Error("Unable to connect to the server. Please try again.")
+    throw new Error("Unable to connect to the server. Please make sure the API server is running and try again.")
   }
   const payload = await response.json().catch(() => ({})) as T & { error?: string }
   if (!response.ok) {
