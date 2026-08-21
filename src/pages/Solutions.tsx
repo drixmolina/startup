@@ -1,8 +1,5 @@
-export default function Solutions() {
-  return (
-    <main>
-      <h1>Solutions</h1>
-      <p>DM Digital Solutions — Digital solutions for growing businesses.</p>
-    </main>
-  );
-}
+import { Link } from "react-router-dom"
+import Meta from "../components/Meta"
+import { solutions } from "../data/site"
+
+export default function Solutions() { return <><Meta title="Digital Solutions | Websites, commerce, automation and AI" description="Explore the digital presence, business systems, and intelligent automation DM Digital Solutions builds for growing businesses." /><section className="page-intro"><div className="container narrow"><p className="eyebrow">Solutions</p><h1>Digital systems with a job to do.</h1><p className="lead">Start with the business problem, then choose the right level of support: presence, operations, or intelligent automation.</p></div></section><section className="section"><div className="container"><div className="solution-detail-grid">{solutions.map((solution, index) => <article className="detail-card" key={solution.title}><div className="detail-top"><span>0{index + 1}</span><p className="eyebrow">{solution.level}</p></div><h2>{solution.title}</h2><p>{solution.summary}</p><h3>Typical building blocks</h3><ul>{solution.features.map((feature) => <li key={feature}>{feature}</li>)}</ul><Link className="text-link" to={`/contact?project=${encodeURIComponent(solution.title)}`}>Discuss this solution →</Link></article>)}</div></div></section></> }

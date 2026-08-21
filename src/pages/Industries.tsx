@@ -1,8 +1,7 @@
-export default function Industries() {
-  return (
-    <main>
-      <h1>Industries</h1>
-      <p>Solutions designed around different business industries.</p>
-    </main>
-  );
-}
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import Meta from "../components/Meta"
+import { industries } from "../data/site"
+
+const needs = ["Get more customers", "Sell online", "Accept bookings", "Reduce manual work", "Manage operations", "Improve customer experience", "Use AI"]
+export default function Industries() { const [active, setActive] = useState(0); const industry = industries[active]; const [need, setNeed] = useState(needs[0]); return <><Meta title="Digital Solutions for Businesses | DM Digital Solutions" description="Explore solution paths for dental, veterinary, hospitality, food, retail, education, and professional service businesses." /><section className="page-intro"><div className="container narrow"><p className="eyebrow">Industries</p><h1>Business context changes the right digital answer.</h1><p className="lead">Reusable solution patterns, shaped for the workflows of the people who use them.</p></div></section><section className="section"><div className="container industry-layout"><div className="industry-tabs" role="tablist" aria-label="Industries">{industries.map((item, index) => <button key={item.name} type="button" role="tab" aria-selected={active === index} className={active === index ? "is-active" : ""} onClick={() => setActive(index)}>{item.name}</button>)}</div><article className="industry-focus"><p className="eyebrow">{industry.name}</p><h2>{industry.problem}</h2><p>{industry.solution}</p><div className="tag-row"><span>Recommended</span><span>{industry.demo}</span></div><Link className="button" to="/demos">Explore demos</Link></article></div></section><section className="section section-muted"><div className="container finder"><p className="eyebrow">Solution finder</p><h2>What are you trying to improve?</h2><p className="lead">This recommendation is a starting point, not a sales claim.</p><div className="finder-options">{needs.map((item) => <button key={item} type="button" className={need === item ? "is-active" : ""} onClick={() => setNeed(item)}>{item}</button>)}</div><div className="recommendation"><p className="eyebrow">For “{need}”</p><h3>{need === "Sell online" ? "E-commerce, social selling, inventory, and order management" : need === "Accept bookings" ? "Booking systems, scheduling, reminders, and customer intake" : need === "Use AI" ? "AI agents, knowledge assistants, and workflow automation" : "A focused digital system mapped to your business workflow"}</h3><Link className="text-link" to="/contact">Discuss my project →</Link></div></div></section></> }

@@ -1,8 +1,3 @@
-export default function Work() {
-  return (
-    <main>
-      <h1>Our Work</h1>
-      <p>Selected projects and case studies.</p>
-    </main>
-  );
-}
+import { Link } from "react-router-dom"
+import Meta from "../components/Meta"
+export default function Work() { return <><Meta title="Our Work | DM Digital Solutions" description="Explore the FacilitEASE case study and the workflow thinking behind DM Digital Solutions projects." /><section className="page-intro"><div className="container narrow"><p className="eyebrow">Selected work</p><h1>Systems that make complex work easier to see.</h1><p className="lead">A case-study view of how we think about operations, reservations, inventory, and follow-through.</p></div></section><section className="section"><div className="container"><article className="case-study"><div><p className="eyebrow">Property and facility management</p><h2>FacilitEASE</h2><p>A centralized system concept for property management, venue reservations, equipment reservations, job orders, inventory, and maintenance reports.</p><div className="tag-row"><span>Reservations</span><span>Inventory</span><span>Job orders</span><span>Maintenance</span></div><Link className="button" to="/contact?project=FacilitEASE">Discuss a similar system</Link></div><div className="case-visual"><div className="case-toolbar">FacilitEASE <span>Operations overview</span></div>{["Venue reservation", "Equipment inventory", "Maintenance report", "Job order"].map((item, index) => <div className="case-row" key={item}><span>{item}</span><strong>{["Approved", "Needs review", "Scheduled", "In progress"][index]}</strong></div>)}</div></article></div></section></> }

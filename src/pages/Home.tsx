@@ -1,8 +1,85 @@
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import Meta from "../components/Meta"
+import { industries, solutions } from "../data/site"
+import "./home.css"
+
+const demoItems = [
+  { id: "dental", label: "Dental booking", title: "Book an appointment", copy: "A clear service, staff, date, and time flow for clinics." },
+  { id: "veterinary", label: "Veterinary", title: "Pet management", copy: "Profiles, vaccination records, visits, and next appointments." },
+  { id: "commerce", label: "E-commerce", title: "Owned commerce", copy: "Products, cart, checkout preview, and order handoff." },
+  { id: "cafe", label: "Cafe ordering", title: "Pickup order", copy: "Menu items, quantities, pickup choices, and confirmation." },
+  { id: "dashboard", label: "Business dashboard", title: "Operations overview", copy: "Orders, customers, appointments, inventory, and tasks." },
+]
+
+const process = [
+  ["01", "Discover", "Understand the business, customers, workflow, and friction."],
+  ["02", "Plan", "Define the right first release, integrations, and technical path."],
+  ["03", "Design", "Shape a clear experience for customers and the team behind it."],
+  ["04", "Build", "Develop the system in focused, reviewable steps."],
+  ["05", "Test", "Check the flows, edge cases, accessibility, and device sizes."],
+  ["06", "Launch", "Deploy the solution and make the handoff understandable."],
+  ["07", "Improve", "Keep the useful parts moving as the business evolves."],
+]
+
+const faqs = [
+  ["How much does a website cost?", "Scope, integrations, and content determine the investment. We define a custom proposal after understanding the work."],
+  ["How long does development take?", "Timeline follows the agreed feature set, content readiness, and review process. A focused website is different from a full system."],
+  ["Do you build e-commerce websites?", "Yes. We can plan catalogs, cart and checkout flows, payment integrations, order management, and inventory around the business model."],
+  ["Can you build booking systems?", "Yes. Booking flows can include services, staff, availability, customer information, confirmations, and reminders."],
+  ["Can you integrate AI?", "Yes. AI is most useful when connected to a defined workflow, knowledge source, and set of allowed actions."],
+]
+
+function SectionHeading({ eyebrow, title, copy, align = "left" }: { eyebrow: string; title: string; copy?: string; align?: "left" | "center" }) {
+  return <div className={`section-title section-title-${align}`}><p className="eyebrow">{eyebrow}</p><h2>{title}</h2>{copy && <p className="lead">{copy}</p>}</div>
+}
+
+function ArrowLink({ to, children }: { to: string; children: string }) {
+  return <Link className="text-link home-arrow-link" to={to}>{children} <span aria-hidden="true">→</span></Link>
+}
+
 export default function Home() {
-  return (
-    <main>
-      <h1>DM Digital Solutions</h1>
-      <p>Digital solutions for growing businesses.</p>
-    </main>
-  );
+  const [industryIndex, setIndustryIndex] = useState(0)
+  const [need, setNeed] = useState("Get more customers")
+  const [demo, setDemo] = useState("dental")
+  const [cart, setCart] = useState(0)
+  const [bookingTime, setBookingTime] = useState("2:00 PM")
+  const [openFaq, setOpenFaq] = useState(0)
+  const industry = industries[industryIndex]
+  const activeDemo = demoItems.find((item) => item.id === demo) ?? demoItems[0]
+  const recommendation = need === "Sell online" ? "E-commerce, social selling, inventory, and order management" : need === "Accept bookings" ? "Booking systems, scheduling, reminders, and customer intake" : need === "Reduce manual work" ? "Automation, dashboards, and workflow tools" : need === "Use AI" ? "AI agents, knowledge assistants, and workflow automation" : "A focused digital system mapped to your business workflow"
+
+  return <>
+    <Meta title="DM Digital Solutions | Digital systems for growing businesses" description="Websites, e-commerce, booking systems, custom software, automation, and AI solutions built around the way your business works." />
+
+    <section className="home-hero hero"><div className="container home-hero-grid"><div className="home-hero-copy"><p className="eyebrow">Digital solutions for growing businesses</p><h1>Digital systems built around the way your business works.</h1><p className="hero-statement">Build better. Sell smarter. Operate simpler.</p><p className="hero-copy">Websites, e-commerce, booking systems, custom software, automation, and AI solutions designed around the way your business actually operates.</p><div className="button-row"><Link className="button" to="/contact">Start a project</Link><Link className="button button-secondary" to="/solutions">Explore solutions</Link></div><div className="hero-proof"><span>Websites</span><span>E-commerce</span><span>Business systems</span><span>Automation</span><span>AI solutions</span></div></div><div className="ecosystem-visual" aria-label="Connected business systems"><div className="ecosystem-core"><span>DM</span><small>Digital systems</small></div>{["Website", "Store", "Booking", "Dashboard", "Automation", "AI"].map((label, index) => <div className={`ecosystem-node ecosystem-node-${index + 1}`} key={label}><span className="ecosystem-dot" />{label}</div>)}</div></div></section>
+
+    <section className="credibility-strip"><div className="container credibility-grid"><strong>Built with modern technology</strong><span>Digital presence</span><span>Business systems</span><span>Intelligent automation</span><strong>For growing businesses</strong></div></section>
+
+    <section className="section problem-section"><div className="container"><SectionHeading eyebrow="The shift" title="Your business should not depend on manual work." copy="Orders buried in DMs, manual scheduling, spreadsheets, repetitive administration, missed inquiries, outdated websites, and scattered customer information all create friction." /><div className="problem-grid"><div className="problem-card problem-card-manual"><p className="eyebrow">Common friction</p>{["Orders buried in DMs", "Manual scheduling", "Spreadsheets everywhere", "Repetitive admin work", "Missed inquiries", "Outdated website", "Scattered customer information"].map((item) => <div className="problem-row" key={item}><span className="problem-mark">×</span>{item}</div>)}</div><div className="problem-card problem-card-digital"><p className="eyebrow">A clearer system</p>{["Customers find the right next step", "Orders and bookings follow a flow", "Information is captured once", "Teams see what needs attention", "Automation handles repeatable handoffs", "The business can improve over time"].map((item) => <div className="problem-row" key={item}><span className="problem-mark problem-mark-good">✓</span>{item}</div>)}</div></div></div></section>
+
+    <section className="section section-muted" id="solutions"><div className="container"><SectionHeading eyebrow="Solutions" title="Three levels of digital maturity." copy="Start with the business problem, then build the right level of support: presence, operations, or intelligent automation." align="center" /><div className="home-solution-grid">{solutions.map((solution, index) => <article className="home-solution-card" key={solution.title}><span className="card-number">0{index + 1}</span><p className="eyebrow">{solution.level}</p><h3>{solution.title}</h3><p>{solution.summary}</p><div className="feature-list">{solution.features.slice(0, 3).map((feature) => <span key={feature}>{feature}</span>)}</div><ArrowLink to="/solutions">Explore solution</ArrowLink></article>)}</div></div></section>
+
+    <section className="section home-commerce-section" id="ecommerce"><div className="container home-two-column"><div><SectionHeading eyebrow="E-commerce and social selling" title="Move from social discovery to owned digital commerce." copy="Facebook messages, Instagram DMs, Messenger, manual orders, and spreadsheets can start the conversation. Your own storefront gives the customer and team a clearer next step." /><div className="commerce-flow-large">{["Social media", "Website", "Products", "Cart", "Checkout", "Order"].map((step, index) => <div key={step}><strong>0{index + 1}</strong><span>{step}</span>{index < 5 && <i aria-hidden="true">↓</i>}</div>)}</div><div className="button-row"><Link className="button" to="/demos">Try the e-commerce demo</Link><Link className="button button-secondary" to="/contact?project=E-commerce">Build an online store</Link></div></div><div className="commerce-demo-card"><div className="demo-window-bar"><span>DM Store</span><small>Demo storefront</small></div><div className="commerce-products">{["Field Notes", "Studio Tote", "Desk Lamp"].map((product, index) => <button type="button" key={product} onClick={() => setCart((value) => value + 1)}><span className={`product-art product-art-${index + 1}`} /><strong>{product}</strong><small>PHP {[499, 799, 1299][index].toLocaleString()}</small><em>Add to cart</em></button>)}</div><div className="demo-cart-line"><span>{cart} item{cart === 1 ? "" : "s"} in cart</span><strong>Checkout preview</strong></div></div></div></section>
+
+    <section className="section section-muted" id="booking"><div className="container home-two-column booking-home"><div className="booking-demo-card"><p className="eyebrow">Demo booking flow</p><h3>Dental appointment</h3><div className="booking-fields"><div><small>Service</small><strong>Dental Cleaning</strong></div><div><small>Dentist</small><strong>Dr. Santos</strong></div><div><small>Date</small><strong>August 20</strong></div></div><div className="booking-times">{["9:00 AM", "11:30 AM", "2:00 PM", "4:00 PM"].map((time) => <button type="button" key={time} className={bookingTime === time ? "is-selected" : ""} onClick={() => setBookingTime(time)}>{time}</button>)}</div><div className="booking-confirm"><span>Selected time</span><strong>{bookingTime}</strong><Link to="/contact?project=Booking%20system">Discuss booking</Link></div></div><div><SectionHeading eyebrow="Booking systems" title="Make booking effortless." copy="Let customers select a service, date, time, and staff member while your team gets a clearer schedule and fewer back-and-forth messages." /><div className="booking-benefits"><span>Service selection</span><span>Availability rules</span><span>Customer details</span><span>Confirmation states</span><span>Reminders</span></div><Link className="button" to="/demos">Explore booking demos</Link></div></div></section>
+
+    <section className="section" id="industries"><div className="container"><SectionHeading eyebrow="Industries" title="Built for businesses like yours." copy="Different industries have different workflows. The right digital system starts with context." align="center" /><div className="industry-home-grid"><div className="industry-home-tabs" role="tablist" aria-label="Industry explorer">{industries.map((item, index) => <button type="button" role="tab" aria-selected={industryIndex === index} className={industryIndex === index ? "is-active" : ""} onClick={() => setIndustryIndex(index)} key={item.name}>{item.name}</button>)}</div><article className="industry-home-focus"><p className="eyebrow">{industry.name}</p><h3>{industry.problem}</h3><p>{industry.solution}</p><div className="tag-row"><span>Recommended solution</span><span>{industry.demo}</span></div><Link className="button" to="/industries">Explore industries</Link></article></div></div></section>
+
+    <section className="section section-muted" id="finder"><div className="container finder-home"><SectionHeading eyebrow="Interactive solution finder" title="What are you trying to improve?" copy="Choose a starting point and get a practical recommendation." align="center" /><div className="finder-options">{["Get more customers", "Sell online", "Accept bookings", "Reduce manual work", "Manage operations", "Improve customer experience", "Use AI"].map((item) => <button type="button" className={need === item ? "is-active" : ""} onClick={() => setNeed(item)} key={item}>{item}</button>)}</div><div className="finder-result"><p className="eyebrow">For “{need}”</p><h3>{recommendation}</h3><Link className="text-link" to="/contact">Discuss my project →</Link></div></div></section>
+
+    <section className="section home-demos-section" id="demos"><div className="container"><SectionHeading eyebrow="Demo center" title="Don't just take our word for it. Try what we build." copy="Explore fictional interactive examples for common business systems." align="center" /><div className="home-demo-shell"><div className="demo-tabs" role="tablist" aria-label="Interactive demos">{demoItems.map((item) => <button type="button" role="tab" aria-selected={demo === item.id} className={demo === item.id ? "is-active" : ""} onClick={() => setDemo(item.id)} key={item.id}>{item.label}</button>)}</div><div className="home-demo-stage"><div><p className="eyebrow">Demo data</p><h3>{activeDemo.title}</h3><p>{activeDemo.copy}</p></div>{demo === "dental" && <div className="demo-detail-row"><span>Dental Cleaning</span><span>Dr. Santos</span><span>{bookingTime}</span></div>}{demo === "veterinary" && <div className="demo-detail-row"><span>Max · Golden Retriever</span><span>Next: August 22</span><span>Vaccination due</span></div>}{demo === "commerce" && <div className="demo-detail-row"><span>3 products</span><span>{cart} cart items</span><span>Checkout preview</span></div>}{demo === "cafe" && <div className="demo-detail-row"><span>Latte</span><span>Pickup in 20 minutes</span><span>PHP 150</span></div>}{demo === "dashboard" && <div className="demo-metric-row">{[["Orders", "24"], ["Customers", "86"], ["Appointments", "12"], ["Tasks", "9"]].map(([label, value]) => <div key={label}><small>{label}</small><strong>{value}</strong></div>)}</div>}<Link className="text-link" to="/demos">Open the full demo center →</Link></div></div></div></section>
+
+    <section className="section" id="work"><div className="container"><SectionHeading eyebrow="Selected work" title="Systems that make complex work easier to see." copy="A case-study view of how we think about operations, reservations, inventory, and follow-through." align="center" /><article className="home-case-study"><div><p className="eyebrow">Property and facility management</p><h3>FacilitEASE</h3><p>A centralized system concept for property management, venue reservations, equipment reservations, job orders, inventory, and maintenance reports.</p><div className="tag-row"><span>Reservations</span><span>Inventory</span><span>Job orders</span><span>Maintenance</span></div><Link className="button" to="/work">View case study</Link></div><div className="case-visual"><div className="case-toolbar">FacilitEASE <span>Operations overview</span></div>{["Venue reservation", "Equipment inventory", "Maintenance report", "Job order"].map((item, index) => <div className="case-row" key={item}><span>{item}</span><strong>{["Approved", "Needs review", "Scheduled", "In progress"][index]}</strong></div>)}</div></article></div></section>
+
+    <section className="section section-muted"><div className="container"><SectionHeading eyebrow="Why DM Digital" title="Built for your business, not a template." copy="Minimal on the surface. Advanced underneath." align="center" /><div className="why-home-grid">{[["Business-first", "We start with the problem, not the technology."], ["Custom-built", "Solutions are designed around your actual workflow."], ["Modern technology", "Projects use current, maintainable web technologies."], ["Long-term support", "Systems can be maintained and improved after launch."]].map(([title, copy]) => <article key={title}><span className="card-number">01</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+
+    <section className="section process-home"><div className="container"><SectionHeading eyebrow="Process" title="From idea to digital solution." copy="A focused, transparent path from the first conversation to the next useful improvement." align="center" /><div className="process-home-grid">{process.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+
+    <section className="section section-muted" id="about"><div className="container about-home-grid"><div><SectionHeading eyebrow="About DM Digital" title="Technology should solve problems, not create more of them." copy="DM Digital Solutions helps small and growing businesses move away from manual processes and outdated digital experiences." /><p className="about-home-copy">We combine web development, e-commerce, business systems, IT solutions, and AI automation to create practical digital tools built around each business.</p><Link className="button" to="/about">Learn about DM Digital</Link></div><div className="about-principles"><div><span>01</span><strong>Understand</strong><p>Map the actual problem before choosing technology.</p></div><div><span>02</span><strong>Build clearly</strong><p>Keep the first release focused, maintainable, and useful.</p></div><div><span>03</span><strong>Improve</strong><p>Leave room for better workflows and automation.</p></div></div></div></section>
+
+    <section className="section home-faq" id="faq"><div className="container home-faq-grid"><SectionHeading eyebrow="FAQ" title="Common questions." copy="A few practical answers about scope, process, and the kinds of digital work DM Digital can support." /><div className="faq-list">{faqs.map(([question, answer], index) => <div className="faq-item" key={question}><button type="button" aria-expanded={openFaq === index} onClick={() => setOpenFaq(openFaq === index ? -1 : index)}><span>{question}</span><strong>{openFaq === index ? "−" : "+"}</strong></button>{openFaq === index && <p>{answer}</p>}</div>)}</div></div></section>
+
+    <section className="cta-band home-final-cta"><div className="container"><p className="eyebrow">Ready when you are</p><h2>Build the system your business has been waiting for.</h2><p>Tell us what you are trying to improve, and we will help identify the right digital solution.</p><div className="button-row"><Link className="button button-light" to="/contact">Start a project</Link><Link className="button button-ghost" to="/demos">Explore demos</Link></div></div></section>
+  </>
 }

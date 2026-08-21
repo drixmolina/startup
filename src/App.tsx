@@ -1,224 +1,57 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react"
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom"
+import Layout from "./components/Layout"
+import About from "./pages/About"
+import AI from "./pages/AI"
+import Contact from "./pages/Contact"
+import Demos from "./pages/Demos"
+import FAQ from "./pages/FAQ"
+import Industries from "./pages/Industries"
+import Privacy from "./pages/Privacy"
+import Solutions from "./pages/Solutions"
+import Terms from "./pages/Terms"
+import Work from "./pages/Work"
+import HomeRestored from "./pages/HomeRestored"
+import Projects from "./pages/Projects"
+import ProjectDetail from "./pages/ProjectDetail"
+import Services from "./pages/Services"
+import ServiceDetail from "./pages/ServiceDetail"
 
-type ButtonVariant = "primary" | "secondary" | "ghost"
-type IconName = "browser" | "bag" | "calendar" | "dashboard" | "spark" | "support" | "tooth" | "paw" | "hotel" | "coffee" | "school" | "arrow"
+function AppRoutes() {
+  const location = useLocation()
 
-type DemoId = "dental" | "veterinary" | "commerce" | "cafe"
-
-function useFadeUp(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const element = ref.current
-    if (!element) return
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches
-    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-      setVisible(true)
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold },
-    )
-
-    observer.observe(element)
-    return () => observer.disconnect()
-  }, [threshold])
-
-  return { ref, className: `fade-up${visible ? " is-visible" : ""}` }
-}
-
-function FadeIn({
-  children,
-  className = "",
-}: {
-  children: ReactNode
-  className?: string
-}) {
-  const fade = useFadeUp()
   return (
-    <div ref={fade.ref} className={`${fade.className} ${className}`}>
-      {children}
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomeRestored />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
+        <Route path="/solutions" element={<Solutions />} />
+        <Route path="/industries" element={<Industries />} />
+        <Route path="/work" element={<Work />} />
+        <Route path="/demos" element={<Demos />} />
+        <Route path="/ai" element={<AI />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Layout>
   )
 }
 
-function Icon({
-  name,
-  decorative = true,
-}: {
-  name: IconName
-  decorative?: boolean
-}) {
-  const icons: Record<IconName, ReactNode> = {
-    browser: (
-      <>
-        <rect x="3" y="5" width="18" height="14" rx="2" />
-        <path d="M3 9h18" />
-        <path d="M7 7h.01M10 7h.01" />
-      </>
-    ),
-    bag: (
-      <>
-        <path d="M7 8V7a5 5 0 0 1 10 0v1" />
-        <path d="M5 8h14l-1 12H6L5 8Z" />
-        <path d="M9 12h6" />
-      </>
-    ),
-    calendar: (
-      <>
-        <rect x="4" y="5" width="16" height="15" rx="2" />
-        <path d="M8 3v4M16 3v4M4 10h16" />
-        <path d="M8 14h3M13 14h3M8 17h3" />
-      </>
-    ),
-    dashboard: (
-      <>
-        <rect x="4" y="4" width="7" height="7" rx="1.5" />
-        <rect x="13" y="4" width="7" height="5" rx="1.5" />
-        <rect x="13" y="11" width="7" height="9" rx="1.5" />
-        <rect x="4" y="13" width="7" height="7" rx="1.5" />
-      </>
-    ),
-    spark: (
-      <>
-        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" />
-        <path d="M5 16l.8 2.2L8 19l-2.2.8L5 22l-.8-2.2L2 19l2.2-.8L5 16Z" />
-        <path d="M18 2l.7 1.8L20.5 4.5l-1.8.7L18 7l-.7-1.8-1.8-.7 1.8-.7L18 2Z" />
-      </>
-    ),
-    support: (
-      <>
-        <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-4.8 4.8a2 2 0 1 0 3 3l4.8-4.8a4 4 0 0 0 5.4-5.4l-2.8 2.8-3-3 2.8-2.8Z" />
-      </>
-    ),
-    tooth: (
-      <>
-        <path d="M7.3 4.7C9 3.5 10.7 4.8 12 4.8s3-1.3 4.7-.1c2.3 1.6 1.7 6.1.6 8.7-.9 2.2-1.4 5.6-3.4 5.6-1.3 0-1.1-3.7-1.9-3.7s-.6 3.7-1.9 3.7c-2 0-2.5-3.4-3.4-5.6-1.1-2.6-1.7-7.1.6-8.7Z" />
-      </>
-    ),
-    paw: (
-      <>
-        <circle cx="7" cy="8" r="2" />
-        <circle cx="12" cy="6" r="2" />
-        <circle cx="17" cy="8" r="2" />
-        <circle cx="9" cy="13" r="2" />
-        <circle cx="15" cy="13" r="2" />
-        <path d="M8.5 17.2c1.4-2.4 5.6-2.4 7 0 .8 1.4-.3 2.8-1.8 2.3-1.1-.4-2.3-.4-3.4 0-1.5.5-2.6-.9-1.8-2.3Z" />
-      </>
-    ),
-    hotel: (
-      <>
-        <path d="M4 21V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v16" />
-        <path d="M2 21h20M8 7h2M14 7h2M8 11h2M14 11h2M8 15h8" />
-      </>
-    ),
-    coffee: (
-      <>
-        <path d="M5 8h11v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5V8Z" />
-        <path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16M8 3v2M12 3v2" />
-      </>
-    ),
-    school: (
-      <>
-        <path d="M3 8l9-5 9 5-9 5-9-5Z" />
-        <path d="M7 10.5V16c1.3 1.5 3 2.2 5 2.2s3.7-.7 5-2.2v-5.5" />
-        <path d="M21 8v7" />
-      </>
-    ),
-    arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
-  }
-
+export default function App() {
   return (
-    <svg
-      className="icon"
-      viewBox="0 0 24 24"
-      aria-hidden={decorative}
-      focusable="false"
-    >
-      {icons[name]}
-    </svg>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   )
 }
 
-function Button({
-  children,
-  href,
-  variant = "primary",
-  onClick,
-  type = "button",
-  className = "",
-}: {
-  children: ReactNode
-  href?: string
-  variant?: ButtonVariant
-  onClick?: () => void
-  type?: "button" | "submit"
-  className?: string
-}) {
-  const classes = `btn btn-${variant} ${className}`
-  if (href) {
-    return (
-      <a href={href} className={classes} onClick={() => onClick?.()}>
-        {children}
-      </a>
-    )
-  }
-
-  return (
-    <button type={type} onClick={onClick} className={classes}>
-      {children}
-    </button>
-  )
-}
-
-function ArrowLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <a href={href} className="arrow-link">
-      <span>{children}</span>
-      <Icon name="arrow" />
-    </a>
-  )
-}
-
-function SectionHeader({
-  eyebrow,
-  title,
-  subtitle,
-  align = "left",
-}: {
-  eyebrow: string
-  title: ReactNode
-  subtitle?: string
-  align?: "left" | "center"
-}) {
-  return (
-    <FadeIn className={`section-header section-header-${align}`}>
-      <p className="eyebrow">{eyebrow}</p>
-      <h2>{title}</h2>
-      {subtitle ? <p className="section-subtitle">{subtitle}</p> : null}
-    </FadeIn>
-  )
-}
-
-const NAV_LINKS = [
-  { label: "Solutions", href: "#solutions" },
-  { label: "E-commerce", href: "#ecommerce" },
-  { label: "Industries", href: "#industries" },
-  { label: "Demos", href: "#demos" },
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-]
+/*
 
 const SERVICES = [
   {
@@ -2071,7 +1904,7 @@ function Footer() {
   )
 }
 
-export default function App() {
+export default function LegacyApp() {
   return (
     <div className="app-shell">
       <Nav />
@@ -2099,3 +1932,5 @@ export default function App() {
     </div>
   )
 }
+
+*/

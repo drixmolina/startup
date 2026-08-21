@@ -1,8 +1,6 @@
+import Meta from "../components/Meta"
+import { SectionTitle } from "../components/PageIntro"
+
 export default function About() {
-  return (
-    <main>
-      <h1>About DM Digital Solutions</h1>
-      <p>We build practical digital solutions for growing businesses.</p>
-    </main>
-  );
+  return <><Meta title="About DM Digital Solutions" description="Learn how DM Digital Solutions approaches websites, business systems, automation, and AI for growing businesses." /><section className="page-intro"><div className="container narrow"><p className="eyebrow">About DM Digital Solutions</p><h1>Technology should solve problems, not create more of them.</h1><p className="lead">DM Digital Solutions builds practical digital tools for businesses moving beyond manual processes and disconnected experiences.</p></div></section><section className="section"><div className="container about-grid"><div><SectionTitle eyebrow="Business first" title="Start with the way the work happens." description="A good interface is only one part of a useful system. We look at customer journeys, internal handoffs, data, and the decisions a team makes every day." /></div><div className="principles">{[["Understand", "Map the actual problem before choosing technology."], ["Build clearly", "Keep the first release focused, maintainable, and useful."], ["Improve", "Leave room for better workflows, integrations, and automation."]].map(([title, text], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section></>
 }

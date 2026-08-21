@@ -1,0 +1,12 @@
+import { Link, useParams } from "react-router-dom"
+import Meta from "../components/Meta"
+import { projectEntries } from "../data/content"
+
+export default function ProjectDetail() {
+  const { slug } = useParams()
+  const project = projectEntries.find((entry) => entry.slug === slug)
+  if (!project) return <NotFound />
+  return <><Meta title={`${project.title} | DM Digital Solutions`} description={project.summary} /><section className="page-intro"><div className="container narrow"><p className="eyebrow">{project.category}</p><h1>{project.title}</h1><p className="lead">{project.summary}</p><Link className="button" to={`/contact?project=${encodeURIComponent(project.title)}`}>Discuss a similar system</Link></div></section><section className="section"><div className="container case-study"><div><p className="eyebrow">Overview</p><h2>A clearer view of the work behind the experience.</h2><p>{project.summary} The concept starts by making the important states, handoffs, and next actions visible to the people who use the system.</p><div className="tag-row">{project.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div><div className="case-visual"><div className="case-toolbar">{project.title}<span>{project.status}</span></div>{project.features.map((feature, index) => <div className="case-row" key={feature}><span>{feature}</span><strong>{["Ready", "Tracked", "Visible", "Connected"][index]}</strong></div>)}</div></div></section><section className="section section-muted"><div className="container narrow"><div className="section-title"><p className="eyebrow">Project structure</p><h2>Designed around the workflow, not a feature checklist.</h2></div><div className="process-home-grid"><article><span>01</span><h3>Problem</h3><p>Disconnected information and repeated manual handoffs create friction.</p></article><article><span>02</span><h3>Solution</h3><p>One clear flow gives customers and teams the right next step.</p></article><article><span>03</span><h3>Next step</h3><p>Start with the smallest useful release and improve from real use.</p></article></div><Link className="button" to="/contact">Start a project</Link></div></section></>
+}
+
+function NotFound() { return <section className="page-intro"><div className="container narrow"><p className="eyebrow">Project</p><h1>That project is not available.</h1><p className="lead">Return to the projects overview to explore the available work.</p><Link className="button" to="/projects">View projects</Link></div></section> }
