@@ -1,12 +1,13 @@
-const apiBase = (import.meta.env.VITE_API_URL ?? "").trim().replace(/\/$/, "")
+const configuredApiBase = (import.meta.env.VITE_API_URL ?? "").trim().replace(/\/$/, "")
+const apiBase = configuredApiBase || (import.meta.env.DEV ? "http://localhost:8787" : "")
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  if (!apiBase) throw new Error("The API is not configured. Please try again later.")
+  const url = `${apiBase}${path}`
   const headers = new Headers(options?.headers)
   if (options?.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json")
   let response: Response
   try {
-    response = await fetch(`${apiBase}${path}`, { ...options, headers })
+    response = await fetch(url, { ...options, headers })
   } catch {
     throw new Error("Unable to connect to the server. Please make sure the API server is running and try again.")
   }

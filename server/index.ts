@@ -27,7 +27,7 @@ const corsOptions: cors.CorsOptions = {
 
 app.disable("x-powered-by")
 app.use(helmet())
-app.use(cors(corsOptions))
+if (process.env.VERCEL !== "1") app.use(cors(corsOptions))
 app.use(express.json({ limit: "32kb" }))
 app.use("/api", apiRateLimit)
 app.use("/api/health", healthRouter)
@@ -36,4 +36,6 @@ app.use("/api/ai", aiRouter)
 app.use(notFound)
 app.use(errorHandler)
 
-app.listen(port, () => console.log(`DM Digital API listening on ${port}`))
+export { app }
+
+if (process.env.VERCEL !== "1") app.listen(port, () => console.log(`DM Digital API listening on ${port}`))
