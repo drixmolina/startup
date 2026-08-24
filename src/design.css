@@ -95,6 +95,8 @@ p { color: var(--muted); }
 .cta-band .button-light { border-color: var(--accent-ink); background: var(--accent-ink); color: var(--accent); }
 .site-footer { background: var(--bg); border-top-color: var(--line); }
 .site-footer .brand { color: var(--text); }
+.skip-link { position: absolute; left: 16px; top: 8px; z-index: 100; padding: 10px 14px; background: var(--accent); color: var(--accent-ink); transform: translateY(-150%); }
+.skip-link:focus { transform: translateY(0); }
 .footer-grid { padding-top: 70px; }
 .footer-bottom { border-top-color: var(--line); }
 .hero-scene { position: absolute; inset: 0; z-index: -1; pointer-events: auto; }

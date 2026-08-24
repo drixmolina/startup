@@ -11,9 +11,10 @@ export default function Meta({ title, description }: { title: string; descriptio
     canonical.setAttribute("rel", "canonical")
     canonical.setAttribute("href", window.location.href.split("?")[0])
     document.head.appendChild(canonical)
-    for (const [property, content] of [["og:title", title], ["og:description", description], ["og:type", "website"], ["twitter:card", "summary"]]) {
-      const tag = document.querySelector(`meta[property="${property}"]`) ?? document.createElement("meta")
-      tag.setAttribute("property", property)
+    const tags = [["property", "og:title", title], ["property", "og:description", description], ["property", "og:type", "website"], ["property", "og:url", window.location.href.split("?")[0]], ["name", "twitter:card", "summary"]]
+    for (const [attribute, name, content] of tags) {
+      const tag = document.querySelector(`meta[${attribute}="${name}"]`) ?? document.createElement("meta")
+      tag.setAttribute(attribute, name)
       tag.setAttribute("content", content)
       document.head.appendChild(tag)
     }

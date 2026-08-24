@@ -20,6 +20,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <div className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="site-header">
         <div className="container nav-inner">
           <Link className="brand" to="/" aria-label="DM Digital Solutions home"><span className="brand-mark">DM</span><span>Digital Solutions</span></Link>
@@ -37,7 +38,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <Link className="button" to="/contact">Start a project</Link>
         </nav>}
       </header>
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <footer className="site-footer">
         <div className="container footer-grid">
           <div><Link className="brand" to="/"><span className="brand-mark">DM</span><span>Digital Solutions</span></Link><p>Digital solutions for growing businesses.</p></div>

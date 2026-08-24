@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://dm-digital-solutions.example/</loc></url>
-  <url><loc>https://dm-digital-solutions.example/solutions</loc></url>
-  <url><loc>https://dm-digital-solutions.example/industries</loc></url>
-  <url><loc>https://dm-digital-solutions.example/work</loc></url>
-  <url><loc>https://dm-digital-solutions.example/demos</loc></url>
-  <url><loc>https://dm-digital-solutions.example/ai</loc></url>
-  <url><loc>https://dm-digital-solutions.example/about</loc></url>
-  <url><loc>https://dm-digital-solutions.example/faq</loc></url>
-  <url><loc>https://dm-digital-solutions.example/contact</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/services</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/projects</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/solutions</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/industries</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/work</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/demos</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/ai</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/about</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/faq</loc></url>
+  <url><loc>https://dm-digital-solutions.vercel.app/contact</loc></url>
 </urlset>

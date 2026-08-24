@@ -1,10 +1,10 @@
 {
   "description": "DM Digital offers tailored digital solutions for small and growing businesses, including websites, e-commerce, booking systems, and automation to enhance operations and customer engagement.",
   "robots": {
-    "index": false
+    "index": true
   },
   "accessibility": {
-    "addBypassLinks": false,
+    "addBypassLinks": true,
     "ignoreReducedMotion": false
   }
 }

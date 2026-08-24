@@ -20,7 +20,12 @@ export async function createAgentResponse(agent: AgentConfig, message: string, h
     throw new Error("AI_PROVIDER_FAILED", { cause: error })
   }
   if (!providerResponse.ok) throw new Error("AI_PROVIDER_FAILED")
-  const payload = await providerResponse.json() as { choices?: Array<{ message?: { content?: string } }> }
+  let payload: { choices?: Array<{ message?: { content?: string } }> }
+  try {
+    payload = await providerResponse.json() as { choices?: Array<{ message?: { content?: string } }> }
+  } catch (error) {
+    throw new Error("AI_PROVIDER_FAILED", { cause: error })
+  }
   const response = payload.choices?.[0]?.message?.content?.trim()
   if (!response) throw new Error("AI_EMPTY_RESPONSE")
   console.info("[AI] Provider returned a response")
