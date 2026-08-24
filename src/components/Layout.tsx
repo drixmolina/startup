@@ -5,7 +5,7 @@ const links = [["Services", "/services"], ["Projects", "/projects"], ["Industrie
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [dark, setDark] = useState(() => localStorage.getItem("dm-theme") === "dark")
+  const [dark, setDark] = useState(() => localStorage.getItem("dm-theme") !== "light")
   const location = useLocation()
 
   useEffect(() => {
