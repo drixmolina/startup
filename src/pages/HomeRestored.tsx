@@ -1,9 +1,7 @@
-import { lazy, Suspense, useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import Meta from "../components/Meta"
 import { projectEntries, serviceEntries } from "../data/content"
-
-const HeroScene = lazy(() => import("../components/HeroScene"))
 
 const proofMetrics = [
   { label: "High-converting websites", value: "01" },
@@ -31,65 +29,25 @@ export default function HomeRestored() {
       />
 
       <section className="hero home-landing-hero">
-        <Suspense fallback={null}>
-          <HeroScene />
-        </Suspense>
-
         <div className="container home-landing-grid">
           <div className="home-landing-copy">
             <p className="eyebrow">Digital solutions for growing businesses</p>
-            <h1>Premium digital systems that make business feel effortless.</h1>
-            <p className="hero-statement">Less scroll. More clarity. Better results.</p>
-            <p className="hero-copy">
-              We design polished websites, e-commerce flows, booking systems, dashboards, and AI workflows
-              that remove friction for customers and give your team a clearer path to growth.
-            </p>
+            <h1>Engage the right individuals.</h1>
+            <p className="hero-copy">Grow with accurate, predictive, and actionable people data.</p>
 
             <div className="hero-actions">
-              <Link className="button" to="/contact">Start a project</Link>
-              <Link className="button button-secondary" to="/services">Explore services</Link>
+              <Link className="button" to="/contact">Get started</Link>
             </div>
 
-            <div className="hero-tags">
-              <span>Web design</span>
-              <span>E-commerce</span>
-              <span>Business systems</span>
-              <span>Automation</span>
-              <span>AI solutions</span>
+            <div className="hero-microcopy">
+              <span>Predicted customer lifetime value = high</span>
             </div>
           </div>
 
-          <div className="hero-hub" aria-label="DM Digital business systems preview">
-            <div className="hub-toolbar">
-              <strong>Business flow</strong>
-              <span>Live overview</span>
-            </div>
-
-            <div className="hub-grid">
-              {[["Revenue", "PHP 89,240"], ["Orders", "243"], ["Appointments", "56"], ["Customers", "1,847"]].map(([label, value]) => (
-                <div className="metric-tile" key={label}>
-                  <span>{label}</span>
-                  <strong>{value}</strong>
-                  <small>Live overview</small>
-                </div>
-              ))}
-            </div>
-
-            <div className="hub-activity">
-              {[
-                ["Website inquiry", "READY", "New lead coming in"],
-                ["Order received", "PAID", "Checkout flow confirmed"],
-                ["Appointment booked", "BOOKED", "Customer scheduled"],
-                ["Automation trigger", "LIVE", "Workflow moving forward"],
-              ].map(([label, status, detail]) => (
-                <div className="activity-card" key={label}>
-                  <small>Recent activity</small>
-                  <strong>{label}</strong>
-                  <span>{detail}</span>
-                  <em>{status}</em>
-                </div>
-              ))}
-            </div>
+          <div className="hero-visual" aria-label="Customer success imagery">
+            <div className="hero-photo" />
+            <div className="hero-floating hero-floating-top">Recent live events <strong>Married</strong></div>
+            <div className="hero-floating hero-floating-bottom">Net worth <strong>$10.2M</strong></div>
           </div>
         </div>
       </section>
