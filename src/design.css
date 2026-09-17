@@ -241,7 +241,7 @@ p { color: var(--muted); }
   .hero-floating-bottom { right: 10%; bottom: 12%; }
 }
 @media (max-width: 768px) {
-  .hero { min-height: 760px; height: auto; }
+  .hero { min-height: 780px; height: auto; }
   .home-landing-grid { padding-inline: 24px; }
   .home-landing-copy {
     width: min(100%, 90%);
@@ -252,18 +252,18 @@ p { color: var(--muted); }
     justify-content: flex-start;
   }
   .hero-visual {
-    right: -12%;
+    right: -18%;
     bottom: 0;
-    width: 118%;
-    height: 64%;
+    width: 132%;
+    height: 54%;
   }
   .hero-portrait-overlay {
     background: linear-gradient(
       90deg,
       rgba(2,10,17,0.96) 0%,
       rgba(2,10,17,0.88) 24%,
-      rgba(2,10,17,0.62) 43%,
-      rgba(2,10,17,0.2) 64%,
+      rgba(2,10,17,0.72) 43%,
+      rgba(2,10,17,0.24) 64%,
       rgba(2,10,17,0.03) 100%
     );
   }
@@ -275,15 +275,20 @@ p { color: var(--muted); }
 }
 @media (max-width: 600px) {
   .site-header { background: rgba(2,8,16,0.98); }
+  .nav-inner { min-height: 72px; gap: 12px; }
+  .brand { font-size: .68rem; letter-spacing: .12em; }
+  .brand-mark { font-size: .68rem; }
   .container { width: min(100% - 24px, 1180px); }
   .desktop-nav, .nav-actions .button-demo, .nav-actions .nav-login { display: none; }
   .menu-toggle { display: flex; }
-  .hero { min-height: 700px; }
+  .hero { min-height: 760px; }
   .home-landing-grid { padding-inline: 20px; }
-  .home-landing-copy { width: 100%; padding-top: 24px; }
-  .home-landing-copy h1 { font-size: clamp(2.8rem, 12vw, 5.3rem); }
-  .hero-copy { font-size: 1.05rem; }
-  .hero-visual { right: -18%; width: 128%; height: 58%; }
+  .home-landing-copy { width: 100%; padding-top: 28px; }
+  .home-landing-copy h1 { max-width: 330px; font-size: clamp(2.8rem, 12vw, 4.2rem); }
+  .hero-copy { max-width: 320px; font-size: 1.05rem; line-height: 1.45; }
+  .hero-actions { margin-top: 28px; }
+  .hero-visual { right: -24%; width: 145%; height: 51%; }
+  .hero-photo { background-position: 62% 22%; }
   .hero-floating { display: none; }
 }
 .hero-hub { position: relative; min-height: 520px; border: 1px solid var(--line); background: color-mix(in srgb, var(--surface) 90%, transparent); box-shadow: 0 24px 80px rgba(0,0,0,.22); overflow: hidden; }
