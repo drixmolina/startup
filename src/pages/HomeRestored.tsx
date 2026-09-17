@@ -42,6 +42,7 @@ export default function HomeRestored() {
 
           <div className="hero-visual" aria-label="DM Digital portrait">
             <div className="hero-photo" />
+            <div className="hero-portrait-overlay" aria-hidden="true" />
             <div className="hero-floating hero-floating-top">
               <span>PROJECT DELIVERY =<br />ON TRACK</span>
             </div>
