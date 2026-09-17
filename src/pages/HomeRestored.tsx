@@ -39,19 +39,19 @@ export default function HomeRestored() {
               <Link className="button" to="/contact">Get Started <span aria-hidden="true">→</span></Link>
             </div>
           </div>
+        </div>
 
-          <div className="hero-visual" aria-label="DM Digital portrait">
-            <div className="hero-photo" />
-            <div className="hero-portrait-overlay" aria-hidden="true" />
-            <div className="hero-floating hero-floating-top">
-              <span>PROJECT DELIVERY =<br />ON TRACK</span>
-            </div>
-            <div className="hero-floating hero-floating-mid">
-              <span>RECENT CLIENT<br />WINS</span>
-            </div>
-            <div className="hero-floating hero-floating-bottom">
-              <span>BUSINESS<br />EFFICIENCY = HIGH</span>
-            </div>
+        <div className="hero-visual" aria-label="DM Digital portrait">
+          <div className="hero-photo" />
+          <div className="hero-portrait-overlay" aria-hidden="true" />
+          <div className="hero-floating hero-floating-top">
+            <span>PROJECT DELIVERY =<br />ON TRACK</span>
+          </div>
+          <div className="hero-floating hero-floating-mid">
+            <span>RECENT CLIENT<br />WINS</span>
+          </div>
+          <div className="hero-floating hero-floating-bottom">
+            <span>BUSINESS<br />EFFICIENCY = HIGH</span>
           </div>
         </div>
       </section>
