@@ -23,7 +23,7 @@ export default function LoadingScreen() {
   return (
     <div className={`loading-screen${isExiting ? " is-exiting" : ""}`} role="status" aria-live="polite" aria-label="Loading website">
       <div className="loading-screen-content">
-        <img className="loading-screen-logo" src="/images/dm-logo.png" alt="Drix Digitals" />
+        <img className="loading-screen-logo" src="/images/drix-logo.png" alt="Drix Digitals" />
         <div className="loading-screen-line" aria-hidden="true">
           <span />
         </div>

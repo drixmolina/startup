@@ -26,21 +26,21 @@ body, button, input, textarea, select { font-family: var(--display); }
   height: 100vh;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, rgba(8, 104, 145, 0.20), transparent 38%), #020A11;
+  background: radial-gradient(circle at center, rgba(30, 40, 160, 0.18), transparent 40%), #020A11;
   opacity: 1;
   transition: opacity 500ms ease;
 }
 .loading-screen.is-exiting { opacity: 0; pointer-events: none; }
 .loading-screen-content { display: flex; align-items: center; flex-direction: column; }
 .loading-screen-logo {
-  width: clamp(120px, 14vw, 180px);
+  width: clamp(120px, 15vw, 220px);
   height: auto;
   opacity: 0;
-  transform: translateY(8px) scale(.97);
-  animation: loading-logo-enter 650ms ease forwards;
+  transform: scale(.94);
+  animation: loading-logo-enter 500ms ease forwards;
 }
 .loading-screen-line {
-  width: 170px;
+  width: 150px;
   height: 2px;
   margin-top: 28px;
   overflow: hidden;
@@ -50,7 +50,7 @@ body, button, input, textarea, select { font-family: var(--display); }
   display: block;
   width: 45%;
   height: 100%;
-  background: #00B8D9;
+  background: #15B8D4;
   animation: loading-progress 1000ms ease-in-out infinite;
 }
 .loading-screen-label {
@@ -63,7 +63,7 @@ body, button, input, textarea, select { font-family: var(--display); }
 }
 .is-site-ready .home-landing-hero { animation: hero-enter 500ms ease both; }
 @keyframes loading-logo-enter {
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 1; transform: scale(1); }
 }
 @keyframes loading-progress {
   from { transform: translateX(-110%); }
