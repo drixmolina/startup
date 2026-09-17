@@ -221,6 +221,8 @@ p { color: var(--muted); }
 .site-header { position: sticky; top: 0; z-index: 20; background: rgba(2,8,16,0.96); border-bottom: 1px solid rgba(255,255,255,0.08); }
 .nav-inner { min-height: 84px; display: flex; align-items: center; gap: 28px; }
 .brand { display: inline-flex; align-items: center; gap: 12px; color: #ffffff; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 800; font-size: .8rem; }
+.brand-logo { display: block; width: auto; height: 32px; object-fit: contain; }
+.brand-logo-footer { height: 28px; }
 .brand-mark { color: #05B8D8; font-family: var(--mono); font-size: .78rem; letter-spacing: .12em; }
 .brand-word { color: #ffffff; }
 .desktop-nav { display: flex; align-items: center; gap: 22px; margin-left: auto; }
@@ -277,6 +279,7 @@ p { color: var(--muted); }
   .site-header { background: rgba(2,8,16,0.98); }
   .nav-inner { min-height: 72px; gap: 12px; }
   .brand { font-size: .68rem; letter-spacing: .12em; }
+  .brand-logo { height: 28px; }
   .brand-mark { font-size: .68rem; }
   .container { width: min(100% - 24px, 1180px); }
   .desktop-nav, .nav-actions .button-demo, .nav-actions .nav-login { display: none; }
