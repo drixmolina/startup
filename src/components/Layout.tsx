@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
 
-const links = [["Services", "/services"], ["Projects", "/projects"], ["Industries", "/industries"], ["Demos", "/demos"], ["AI", "/ai"], ["About", "/about"], ["FAQ", "/faq"]] as const
+const links = [["Solutions", "/services"], ["Projects", "/projects"], ["Industries", "/industries"], ["About", "/about"], ["Blog", "/faq"]] as const
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -22,18 +22,23 @@ export default function Layout({ children }: { children: ReactNode }) {
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="site-header">
         <div className="container nav-inner">
-          <Link className="brand" to="/" aria-label="DM Digital Solutions home"><span className="brand-mark">DM</span><span>Digital Solutions</span></Link>
+          <Link className="brand" to="/" aria-label="DM Digital Solutions home">
+            <span className="brand-mark">DM</span>
+            <span className="brand-word">DIGITAL</span>
+          </Link>
           <nav className="desktop-nav" aria-label="Primary navigation">
             {links.map(([label, path]) => <NavLink key={label} to={path}>{label}</NavLink>)}
           </nav>
           <div className="nav-actions">
-            <Link className="button button-small" to="/contact">Start a project</Link>
+            <Link className="nav-login" to="/about">Login ↗</Link>
+            <Link className="button button-demo" to="/contact">Request a Demo</Link>
             <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((value) => !value)}><span /><span /><span /></button>
           </div>
         </div>
         {menuOpen && <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
           {links.map(([label, path]) => <NavLink key={label} to={path}>{label}</NavLink>)}
-          <Link className="button" to="/contact">Start a project</Link>
+          <Link className="button button-demo" to="/contact">Request a Demo</Link>
+          <Link className="nav-login" to="/about">Login ↗</Link>
         </nav>}
       </header>
       <main id="main-content">{children}</main>

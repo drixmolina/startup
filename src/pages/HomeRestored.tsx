@@ -31,23 +31,26 @@ export default function HomeRestored() {
       <section className="hero home-landing-hero">
         <div className="container home-landing-grid">
           <div className="home-landing-copy">
-            <p className="eyebrow">Digital solutions for growing businesses</p>
-            <h1>Engage the right individuals.</h1>
-            <p className="hero-copy">Grow with accurate, predictive, and actionable people data.</p>
+            <p className="eyebrow">DIGITAL SOLUTIONS FOR GROWING BUSINESSES</p>
+            <h1>Build the right<br />digital solutions.</h1>
+            <p className="hero-copy">Websites, systems, automation, and practical AI for growing businesses.</p>
 
             <div className="hero-actions">
-              <Link className="button" to="/contact">Get started</Link>
-            </div>
-
-            <div className="hero-microcopy">
-              <span>Predicted customer lifetime value = high</span>
+              <Link className="button" to="/contact">Get Started <span aria-hidden="true">→</span></Link>
             </div>
           </div>
 
-          <div className="hero-visual" aria-label="Customer success imagery">
+          <div className="hero-visual" aria-label="DM Digital portrait">
             <div className="hero-photo" />
-            <div className="hero-floating hero-floating-top">Recent live events <strong>Married</strong></div>
-            <div className="hero-floating hero-floating-bottom">Net worth <strong>$10.2M</strong></div>
+            <div className="hero-floating hero-floating-top">
+              <span>PROJECT DELIVERY =<br />ON TRACK</span>
+            </div>
+            <div className="hero-floating hero-floating-mid">
+              <span>RECENT CLIENT<br />WINS</span>
+            </div>
+            <div className="hero-floating hero-floating-bottom">
+              <span>BUSINESS<br />EFFICIENCY = HIGH</span>
+            </div>
           </div>
         </div>
       </section>
