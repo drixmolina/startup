@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom"
 import Layout from "./components/Layout"
+import LoadingScreen from "./components/LoadingScreen"
 import About from "./pages/About"
 import AI from "./pages/AI"
 import Contact from "./pages/Contact"
@@ -45,9 +46,12 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <>
+      <LoadingScreen />
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </>
   )
 }
 
