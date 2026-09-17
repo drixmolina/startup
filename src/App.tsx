@@ -12,7 +12,7 @@ import Terms from "./pages/Terms"
 import Work from "./pages/Work"
 import HomeRestored from "./pages/HomeRestored"
 import Projects from "./pages/Projects"
-import ProjectDetail from "./pages/ProjectDetail"
+import ProjectDetail from "./pages/prisma"
 import Services from "./pages/Services"
 import ServiceDetail from "./pages/ServiceDetail"
 

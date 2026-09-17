@@ -5,13 +5,12 @@ const links = [["Services", "/services"], ["Projects", "/projects"], ["Industrie
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [dark, setDark] = useState(() => localStorage.getItem("dm-theme") !== "light")
   const location = useLocation()
 
   useEffect(() => {
-    document.documentElement.dataset.theme = dark ? "dark" : "light"
-    localStorage.setItem("dm-theme", dark ? "dark" : "light")
-  }, [dark])
+    document.documentElement.dataset.theme = "light"
+    localStorage.removeItem("dm-theme")
+  }, [])
 
   useEffect(() => {
     setMenuOpen(false)
@@ -28,7 +27,6 @@ export default function Layout({ children }: { children: ReactNode }) {
             {links.map(([label, path]) => <NavLink key={label} to={path}>{label}</NavLink>)}
           </nav>
           <div className="nav-actions">
-            <button className="theme-toggle" type="button" onClick={() => setDark((value) => !value)} aria-label={`Switch to ${dark ? "light" : "dark"} mode`} aria-pressed={dark}>{dark ? "Light" : "Dark"}</button>
             <Link className="button button-small" to="/contact">Start a project</Link>
             <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((value) => !value)}><span /><span /><span /></button>
           </div>

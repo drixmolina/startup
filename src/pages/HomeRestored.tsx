@@ -1,25 +1,259 @@
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useState } from "react"
 import { Link } from "react-router-dom"
 import Meta from "../components/Meta"
 import { projectEntries, serviceEntries } from "../data/content"
 
 const HeroScene = lazy(() => import("../components/HeroScene"))
 
+const proofMetrics = [
+  { label: "High-converting websites", value: "01" },
+  { label: "Booking flow design", value: "02" },
+  { label: "Business systems", value: "03" },
+  { label: "AI + automation", value: "04" },
+]
+
 const process = [
-  ["01", "Discover", "Understand the business, customer journey, and friction."],
-  ["02", "Plan", "Define the right first release and technical path."],
-  ["03", "Build", "Develop a focused system in clear, reviewable steps."],
-  ["04", "Improve", "Launch, learn, and keep the useful parts moving."],
+  ["01", "Understand", "Map the workflow, customer journey, and friction before choosing a solution."],
+  ["02", "Design", "Define the right experience, conversion flow, and digital system structure."],
+  ["03", "Build", "Ship the useful first version with clear, maintainable foundations."],
+  ["04", "Improve", "Measure the result and keep refining what matters most."],
 ]
 
 export default function HomeRestored() {
-  return <>
-    <Meta title="DM Digital | Digital systems for growing businesses" description="Digital solutions built around the way your business works: websites, commerce, booking, software, automation, and AI." />
-    <section className="hero home-landing-hero"><Suspense fallback={null}><HeroScene /></Suspense><div className="container home-landing-grid"><div className="home-landing-copy"><p className="eyebrow">Digital solutions for growing businesses</p><h1>Digital systems built around the way your business works.</h1><p className="hero-statement">Build better. Sell smarter. Operate simpler.</p><p className="hero-copy">Websites, e-commerce, booking systems, custom software, automation, and AI solutions designed around the way your business actually operates.</p><div className="hero-actions"><Link className="button" to="/contact">Start a project</Link><Link className="button button-secondary" to="/services">Explore services</Link></div><div className="hero-tags"><span>Websites</span><span>E-commerce</span><span>Business systems</span><span>Automation</span></div></div><div className="hero-hub" aria-label="DM Digital business systems preview"><div className="hub-toolbar"><strong>DM Business Hub</strong><span>Connected workflows</span></div><div className="hub-grid">{[["Revenue", "PHP 89,240"], ["Orders", "243"], ["Appointments", "56"], ["Customers", "1,847"]].map(([label, value]) => <div className="metric-tile" key={label}><span>{label}</span><strong>{value}</strong><small>Live overview</small></div>)}</div><div className="hub-activity">{["Website inquiry", "New order", "Appointment", "Automation"].map((item, index) => <div className="activity-card" key={item}><small>Recent activity</small><strong>{item}</strong><span>Ready for the next step</span><em>{["NEW", "PAID", "BOOKED", "DONE"][index]}</em></div>)}</div></div></div></section>
-    <section className="band"><div className="container band-grid"><strong>Built with modern technology</strong><span>Digital presence</span><span>Business systems</span><span>Intelligent automation</span><strong>For growing businesses</strong></div></section>
-    <section className="section section-muted"><div className="container"><div className="section-title"><p className="eyebrow">What we build</p><h2>Start with the business problem.</h2><p className="lead">Choose a focused digital solution now, with room to grow into a stronger system later.</p></div><div className="home-card-grid">{serviceEntries.slice(0, 3).map((service, index) => <article className="detail-card" key={service.slug}><div className="detail-top"><span>0{index + 1}</span><p className="eyebrow">{service.level}</p></div><h3>{service.title}</h3><p>{service.summary}</p><Link className="text-link" to={`/services/${service.slug}`}>Explore service -&gt;</Link></article>)}</div><Link className="button" to="/services">View all services</Link></div></section>
-    <section className="section"><div className="container"><div className="section-title"><p className="eyebrow">Selected work</p><h2>Systems that make complex work easier to see.</h2><p className="lead">A case-study view of operations, commerce, and workflow thinking.</p></div><div className="home-card-grid">{projectEntries.map((project) => <article className="detail-card" key={project.slug}><p className="eyebrow">{project.category}</p><h3>{project.title}</h3><p>{project.summary}</p><div className="tag-row">{project.features.slice(0, 2).map((feature) => <span key={feature}>{feature}</span>)}</div><Link className="text-link" to={`/projects/${project.slug}`}>View project -&gt;</Link></article>)}</div></div></section>
-    <section className="section section-muted"><div className="container home-principles"><div className="section-title"><p className="eyebrow">How we work</p><h2>Minimal on the surface. Thoughtful underneath.</h2><p className="lead">A practical path from the first useful question to a system your team can actually use.</p></div><div className="principles">{process.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
-    <section className="cta-band home-final-cta"><div className="container"><p className="eyebrow">Ready when you are</p><h2>Have a business process you would like to improve?</h2><p>Tell us what you are trying to improve, and we will help identify the right digital solution.</p><div className="hero-actions"><Link className="button button-light" to="/contact">Start a project</Link><Link className="button button-ghost" to="/demos">Explore demos</Link></div></div></section>
-  </>
+  const [selectedService, setSelectedService] = useState(serviceEntries[0])
+  const [selectedProject, setSelectedProject] = useState(projectEntries[0])
+
+  return (
+    <>
+      <Meta
+        title="DM Digital | Digital systems for growing businesses"
+        description="Premium websites, e-commerce, booking systems, dashboards, and AI workflows built around the way your business works."
+      />
+
+      <section className="hero home-landing-hero">
+        <Suspense fallback={null}>
+          <HeroScene />
+        </Suspense>
+
+        <div className="container home-landing-grid">
+          <div className="home-landing-copy">
+            <p className="eyebrow">Digital solutions for growing businesses</p>
+            <h1>Premium digital systems that make business feel effortless.</h1>
+            <p className="hero-statement">Less scroll. More clarity. Better results.</p>
+            <p className="hero-copy">
+              We design polished websites, e-commerce flows, booking systems, dashboards, and AI workflows
+              that remove friction for customers and give your team a clearer path to growth.
+            </p>
+
+            <div className="hero-actions">
+              <Link className="button" to="/contact">Start a project</Link>
+              <Link className="button button-secondary" to="/services">Explore services</Link>
+            </div>
+
+            <div className="hero-tags">
+              <span>Web design</span>
+              <span>E-commerce</span>
+              <span>Business systems</span>
+              <span>Automation</span>
+              <span>AI solutions</span>
+            </div>
+          </div>
+
+          <div className="hero-hub" aria-label="DM Digital business systems preview">
+            <div className="hub-toolbar">
+              <strong>Business flow</strong>
+              <span>Live overview</span>
+            </div>
+
+            <div className="hub-grid">
+              {[["Revenue", "PHP 89,240"], ["Orders", "243"], ["Appointments", "56"], ["Customers", "1,847"]].map(([label, value]) => (
+                <div className="metric-tile" key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                  <small>Live overview</small>
+                </div>
+              ))}
+            </div>
+
+            <div className="hub-activity">
+              {[
+                ["Website inquiry", "READY", "New lead coming in"],
+                ["Order received", "PAID", "Checkout flow confirmed"],
+                ["Appointment booked", "BOOKED", "Customer scheduled"],
+                ["Automation trigger", "LIVE", "Workflow moving forward"],
+              ].map(([label, status, detail]) => (
+                <div className="activity-card" key={label}>
+                  <small>Recent activity</small>
+                  <strong>{label}</strong>
+                  <span>{detail}</span>
+                  <em>{status}</em>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="band">
+        <div className="container band-grid">
+          <strong>Built for modern growth</strong>
+          {proofMetrics.map((metric) => (
+            <span key={metric.label}>{metric.label}</span>
+          ))}
+          <strong>For growing businesses</strong>
+        </div>
+      </section>
+
+      <section className="section section-muted">
+        <div className="container">
+          <div className="section-title section-title-split">
+            <div>
+              <p className="eyebrow">What we build</p>
+              <h2>Designed to move business forward.</h2>
+            </div>
+            <p className="lead">
+              A focused digital system helps customers act faster, teams work cleaner, and the business looks more polished online.
+            </p>
+          </div>
+
+          <div className="solution-picker">
+            <div className="solution-tabs" aria-label="Solution categories">
+              {serviceEntries.slice(0, 4).map((service) => (
+                <button
+                  type="button"
+                  key={service.slug}
+                  className={selectedService.slug === service.slug ? "is-active" : ""}
+                  onClick={() => setSelectedService(service)}
+                >
+                  {service.title}
+                </button>
+              ))}
+            </div>
+
+            <article className="solution-focus">
+              <div className="solution-focus-header">
+                <p className="eyebrow">{selectedService.level}</p>
+                <h3>{selectedService.title}</h3>
+              </div>
+
+              <p>{selectedService.summary}</p>
+
+              <div className="tag-row">
+                {selectedService.features.slice(0, 4).map((feature) => (
+                  <span key={feature}>{feature}</span>
+                ))}
+              </div>
+
+              <div className="solution-focus-meta">
+                <div>
+                  <span>Ideal for</span>
+                  <strong>{selectedService.level}</strong>
+                </div>
+                <div>
+                  <span>Outcome</span>
+                  <strong>Sharper customer journey</strong>
+                </div>
+              </div>
+
+              <Link className="button" to={`/services/${selectedService.slug}`}>
+                Explore solution
+              </Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-title">
+            <p className="eyebrow">Selected work</p>
+            <h2>High-trust digital systems, not generic templates.</h2>
+            <p className="lead">
+              These examples show how DM Digital translates operations, customer journeys, and service delivery into a clearer experience.
+            </p>
+          </div>
+
+          <div className="case-layout">
+            <div className="case-list">
+              {projectEntries.map((project) => (
+                <button
+                  type="button"
+                  key={project.slug}
+                  className={selectedProject.slug === project.slug ? "case-option is-active" : "case-option"}
+                  onClick={() => setSelectedProject(project)}
+                >
+                  <span>{project.category}</span>
+                  <strong>{project.title}</strong>
+                </button>
+              ))}
+            </div>
+
+            <article className="case-detail">
+              <p className="eyebrow">{selectedProject.category}</p>
+              <h3>{selectedProject.title}</h3>
+              <p>{selectedProject.summary}</p>
+
+              <div className="tag-row">
+                {selectedProject.features.map((feature) => (
+                  <span key={feature}>{feature}</span>
+                ))}
+              </div>
+
+              <div className="case-meta">
+                <div>
+                  <span>Status</span>
+                  <strong>{selectedProject.status}</strong>
+                </div>
+                <div>
+                  <span>Focus</span>
+                  <strong>Operational clarity</strong>
+                </div>
+              </div>
+
+              <Link className="button button-secondary" to={`/projects/${selectedProject.slug}`}>
+                See project
+              </Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-muted">
+        <div className="container home-principles">
+          <div className="section-title">
+            <p className="eyebrow">How we work</p>
+            <h2>Minimal on the surface. Thoughtful underneath.</h2>
+            <p className="lead">
+              A practical way to move from a business problem to a useful digital system that actually gets used.
+            </p>
+          </div>
+
+          <div className="principles">
+            {process.map(([number, title, copy]) => (
+              <article key={number}>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cta-band home-final-cta">
+        <div className="container">
+          <p className="eyebrow">Ready when you are</p>
+          <h2>Have a business process you would like to improve?</h2>
+          <p>
+            Tell us what you are trying to improve, and we will help identify the right digital solution for your next move.
+          </p>
+
+          <div className="hero-actions">
+            <Link className="button button-light" to="/contact">Start a project</Link>
+            <Link className="button button-ghost" to="/demos">Explore demos</Link>
+          </div>
+        </div>
+      </section>
+    </>
+  )
 }

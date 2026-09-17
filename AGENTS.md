@@ -1,41 +1,66 @@
-# figma-make-app
+# DM Digital Solutions
 
-React + Vite + Tailwind CSS project running inside Figma Make.
+This repo is a Vite + React frontend and a separate Express API for DM Digital Solutions. Treat the app as a full-stack project: frontend code lives in `src/`, server logic lives in `server/`, and deployment is split across Vercel + an HTTPS API service.
 
-## Development Server
+## How to work in this repo
 
-A Vite development server is **already running** on `$PORT` (default 8443). You don't need to start it manually.
+- Frontend entry: `src/main.tsx`, `src/App.tsx`, `src/index.css`
+- Main route/configuration source: `src/App.tsx`
+- API entry: `server/index.ts`
+- API routes: `server/routes/`
+- Database setup: `server/db/` and `pnpm db:migrate`
+- Shared product docs: `README.md`
 
-- Preview URL: The user can access the running app through the preview panel
-- Hot reload: Changes to source files are reflected immediately
+## Run and build
 
-## Project Structure
+Use the scripts from `package.json`:
 
-This is the canonical project structure. Start with task-relevant files below. Only follow imports or inspect other files when required, when a documented path is missing, or when the repository contradicts this guide.
+- `pnpm dev` — run the Vite frontend
+- `pnpm server` — run the Express API locally
+- `pnpm build` — build frontend and compile server TypeScript
+- `pnpm db:migrate` — apply the PostgreSQL schema
+- `pnpm start` — run the compiled server from `dist-server/`
 
-- `src/main.tsx` - React entrypoint; imports `src/index.css` and mounts `src/App.tsx` into the `#root` element
-- `src/App.tsx` - Primary application component and the usual starting point for UI work
-- `src/index.css` - Global CSS entrypoint and Tailwind CSS v4 import
-- `index.html` - Vite HTML shell containing the `#root` element and loading `src/main.tsx`
-- `package.json` - Project dependencies and the Vite build, development, preview, and formatting scripts
-- `vite.config.ts` - Vite configuration with React, Tailwind CSS v4, and Figma Make plugins plus the `@` alias for `src`
-- `.mise.toml` - Toolchain versions for Node.js and pnpm
+The default local origins are:
 
-## Dependencies
+- Frontend: `http://localhost:8443`
+- API: `http://localhost:8787`
 
-- Runtime: React 19 and React DOM 19
-- Styling: Tailwind CSS v4 with the `@tailwindcss/vite` plugin
-- Build tooling: Vite 8, TypeScript 5.7, and `@vitejs/plugin-react`
-- Formatting: oxfmt
+## Architecture rules
 
-## Styling
+- Do not deploy the Express app as a Vercel static build. The frontend is a Vercel SPA and the API is a separate Node service.
+- Keep frontend-only configuration in `VITE_` env vars; never put private secrets in frontend vars.
+- Keep server-side secrets in `.env` or the deployment environment, not in the app bundle.
+- CORS is explicit and controlled by `CORS_ORIGINS` on the API side.
+- The contact flow involves validation, DB persistence, email sending, and rate limiting; do not bypass the existing API layers when changing contact behavior.
 
-This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin configured in `vite.config.ts`. `src/index.css` imports Tailwind with `@import 'tailwindcss';`. Use Tailwind utility classes directly in JSX and put global CSS or Tailwind v4 theme customization in `src/index.css`. This scaffold does not need a Tailwind config file or PostCSS config.
+## Frontend conventions
 
-`src/main.tsx` imports `src/index.css`, so global font wiring belongs in `src/index.css`. Keep CSS `@import` statements first, then add any `@font-face` rules and font-family defaults there.
+- Use React Router routes in `src/App.tsx` and keep route additions consistent with the existing page layout.
+- Prefer Tailwind utility classes and keep styling in `src/index.css` only for global/theme-level CSS.
+- Default export React components.
+- Keep code style consistent with the existing TypeScript/TSX files: double quotes where needed, balanced JSX, and no broken imports.
 
-## Code quality
+## Backend conventions
 
-- Use double quotes for strings containing apostrophes (`"We're here to help"`), or escape them in single-quoted strings. An unescaped apostrophe in a single-quoted string breaks the build.
-- Ensure JSX tags are closed and braces are balanced.
-- Export components as default exports.
+- API logic belongs in `server/`, not in the frontend.
+- Route handlers, validation, middleware, and database helpers should remain modular under `server/routes/`, `server/middleware/`, and `server/db/`.
+- Preserve the existing API error handling and validation patterns instead of introducing ad hoc responses.
+
+## Environment and secrets
+
+- Copy `.env.example` to `.env` for local setup when needed.
+- Never commit `.env` files or production credentials.
+- `VITE_API_URL` is the public HTTPS URL of the deployed API; it is not a database credential or private key.
+- For production, ensure `DATABASE_URL`, `EMAIL_API_KEY`, `CONTACT_RECIPIENT_EMAIL`, `AI_API_KEY`, and related values are configured in the deployment environment before relying on those features.
+
+## Safety notes for AI agents
+
+- Prefer minimal, surgical edits and follow the current repo patterns.
+- Before changing API behavior, inspect the route and validation code in `server/routes/` and `server/middleware/`.
+- Before editing frontend pages, check the relevant page and the shared layout in `src/components/`.
+- If a task requires deployment or secret rotation details, treat them as operational concerns rather than code changes.
+
+## Related docs
+
+- [README.md](README.md) — deployment, environment variables, and full project setup
