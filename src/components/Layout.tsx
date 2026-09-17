@@ -23,7 +23,9 @@ export default function Layout({ children }: { children: ReactNode }) {
       <header className="site-header">
         <div className="container nav-inner">
           <Link className="brand" to="/" aria-label="Drix Digital Solutions home">
-            <img className="brand-logo" src="/images/dm-logo.png" alt="Drix Digitals" />
+            <span className="brand-logo-wrap">
+              <img className="brand-logo" src="/images/drix-logo.png" alt="Drix Digitals" />
+            </span>
           </Link>
           <nav className="desktop-nav" aria-label="Primary navigation">
             {links.map(([label, path]) => <NavLink key={label} to={path}>{label}</NavLink>)}
@@ -41,7 +43,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <main id="main-content">{children}</main>
       <footer className="site-footer">
         <div className="container footer-grid">
-          <div><Link className="brand" to="/" aria-label="Drix Digital Solutions home"><img className="brand-logo brand-logo-footer" src="/images/dm-logo.png" alt="Drix Digitals" /></Link><p>Digital solutions for growing businesses.</p></div>
+          <div><Link className="brand" to="/" aria-label="Drix Digital Solutions home"><span className="brand-logo-wrap brand-logo-wrap-footer"><img className="brand-logo" src="/images/drix-logo.png" alt="Drix Digitals" /></span></Link><p>Digital solutions for growing businesses.</p></div>
           <div><p className="footer-label">Explore</p><Link to="/services">Services</Link><Link to="/projects">Projects</Link><Link to="/industries">Industries</Link><Link to="/demos">Demos</Link></div>
           <div><p className="footer-label">Company</p><Link to="/about">About</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></div>
         </div>
