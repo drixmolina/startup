@@ -98,9 +98,9 @@ p { color: var(--muted); }
 .hero .button:hover { background: #08C4E5; transform: translateX(4px); }
 .hero-visual {
   position: absolute;
-  right: -3%;
+  right: 0;
   bottom: 0;
-  width: 68%;
+  width: 100%;
   height: 100%;
   z-index: 1;
   pointer-events: none;
@@ -235,7 +235,7 @@ p { color: var(--muted); }
 @media (max-width: 900px) {
   .home-landing-grid { padding-inline: 32px; }
   .home-landing-copy { width: min(560px, 48%); padding-top: 28px; }
-  .hero-visual { width: 68%; }
+  .hero-visual { right: 0; width: 100%; }
   .hero-floating-top { right: 4%; top: 20%; }
   .hero-floating-mid { right: 20%; top: 46%; }
   .hero-floating-bottom { right: 10%; bottom: 12%; }
