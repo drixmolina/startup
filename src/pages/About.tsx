@@ -101,7 +101,7 @@ export default function About() {
         <section className="about-section about-founder">
           <div className="container about-founder-grid">
             <div className="about-founder-visual">
-              <img src="/images/drix-hero.png" alt="Drix Molina, founder of DM Digital Solutions" />
+              <img src="/images/drix-hero-mobile.jpeg" alt="Drix Molina, founder of DM Digital Solutions" />
             </div>
             <div className="about-founder-content">
               <p className="eyebrow">Founder</p>
