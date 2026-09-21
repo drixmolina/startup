@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
 
-const links = [["Solutions", "/services"], ["Projects", "/projects"], ["Industries", "/industries"], ["About", "/about"], ["Blog", "/faq"]] as const
+const links = [["Services", "/services"], ["Projects", "/projects"], ["Industries", "/industries"], ["About", "/about"], ["FAQ", "/faq"]] as const
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -22,28 +22,28 @@ export default function Layout({ children }: { children: ReactNode }) {
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="site-header">
         <div className="container nav-inner">
-          <Link className="brand" to="/" aria-label="Drix Digital Solutions home">
+          <Link className="brand" to="/" aria-label="DM Digital Solutions home">
             <span className="brand-logo-wrap">
-              <img className="brand-logo" src="/images/drix-logo.png" alt="Drix Digitals" />
+              <img className="brand-logo" src="/images/drix-logo.png" alt="DM Digital Solutions" />
             </span>
           </Link>
           <nav className="desktop-nav" aria-label="Primary navigation">
             {links.map(([label, path]) => <NavLink key={label} to={path}>{label}</NavLink>)}
           </nav>
           <div className="nav-actions">
-            <Link className="button button-demo" to="/contact">Request a Demo</Link>
+            <Link className="button button-demo" to="/contact">Start a project</Link>
             <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((value) => !value)}><span /><span /><span /></button>
           </div>
         </div>
         {menuOpen && <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
           {links.map(([label, path]) => <NavLink key={label} to={path}>{label}</NavLink>)}
-          <Link className="button button-demo" to="/contact">Request a Demo</Link>
+          <Link className="button button-demo" to="/contact">Start a project</Link>
         </nav>}
       </header>
       <main id="main-content">{children}</main>
       <footer className="site-footer">
         <div className="container footer-grid">
-          <div><Link className="brand" to="/" aria-label="Drix Digital Solutions home"><span className="brand-logo-wrap brand-logo-wrap-footer"><img className="brand-logo" src="/images/drix-logo.png" alt="Drix Digitals" /></span></Link><p>Digital solutions for growing businesses.</p></div>
+          <div><Link className="brand" to="/" aria-label="DM Digital Solutions home"><span className="brand-logo-wrap brand-logo-wrap-footer"><img className="brand-logo" src="/images/drix-logo.png" alt="DM Digital Solutions" /></span></Link><p>Digital solutions for growing businesses.</p></div>
           <div><p className="footer-label">Explore</p><Link to="/services">Services</Link><Link to="/projects">Projects</Link><Link to="/industries">Industries</Link><Link to="/demos">Demos</Link></div>
           <div><p className="footer-label">Company</p><Link to="/about">About</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></div>
         </div>

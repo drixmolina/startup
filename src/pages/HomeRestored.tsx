@@ -4,10 +4,10 @@ import Meta from "../components/Meta"
 import { projectEntries, serviceEntries } from "../data/content"
 
 const proofMetrics = [
-  { label: "High-converting websites", value: "01" },
-  { label: "Booking flow design", value: "02" },
-  { label: "Business systems", value: "03" },
-  { label: "AI + automation", value: "04" },
+  { label: "Discovery-first strategy", value: "Strategy" },
+  { label: "Conversion-focused UX", value: "UX" },
+  { label: "Operational clarity", value: "Systems" },
+  { label: "AI + automation", value: "Automation" },
 ]
 
 const process = [
@@ -15,6 +15,24 @@ const process = [
   ["02", "Design", "Define the right experience, conversion flow, and digital system structure."],
   ["03", "Build", "Ship the useful first version with clear, maintainable foundations."],
   ["04", "Improve", "Measure the result and keep refining what matters most."],
+]
+
+const testimonials = [
+  {
+    quote: "The new booking flow made our front desk far calmer. Patients can self-serve without our team chasing messages all day.",
+    name: "Clinic Operations Lead",
+    context: "Dental practice",
+  },
+  {
+    quote: "The system feels like it was designed around how we actually work. It reduced repetitive admin and gave us clearer visibility.",
+    name: "Business Owner",
+    context: "Service business",
+  },
+  {
+    quote: "It finally looked premium and performed like a real business tool, not a patched-together website.",
+    name: "Founder",
+    context: "Growing retail brand",
+  },
 ]
 
 export default function HomeRestored() {
@@ -32,11 +50,12 @@ export default function HomeRestored() {
         <div className="container home-landing-grid">
           <div className="home-landing-copy">
             <p className="eyebrow">DIGITAL SOLUTIONS FOR GROWING BUSINESSES</p>
-            <h1>Build the right<br />digital solutions.</h1>
-            <p className="hero-copy">Websites, systems, automation, and practical AI for growing businesses.</p>
+            <h1>Turn friction into<br />a stronger business.</h1>
+            <p className="hero-copy">Premium websites, operational systems, and practical AI workflows designed to help service businesses convert faster and run smoother.</p>
 
             <div className="hero-actions">
-              <Link className="button" to="/contact">Get Started <span aria-hidden="true">→</span></Link>
+              <Link className="button" to="/contact">Book a discovery call <span aria-hidden="true">→</span></Link>
+              <Link className="button button-secondary" to="/projects">View case studies</Link>
             </div>
           </div>
         </div>
@@ -63,6 +82,34 @@ export default function HomeRestored() {
             <span key={metric.label}>{metric.label}</span>
           ))}
           <strong>For growing businesses</strong>
+        </div>
+      </section>
+
+      <section className="section section-muted">
+        <div className="container">
+          <div className="section-title section-title-split">
+            <div>
+              <p className="eyebrow">Why businesses choose us</p>
+              <h2>More than a website. A clearer growth system.</h2>
+            </div>
+            <p className="lead">
+              The right digital platform should help you win trust, reduce manual work, and give customers a smoother path to buying or booking.
+            </p>
+          </div>
+
+          <div className="principles">
+            {[
+              ["01", "Built around the business", "We map the real workflow before recommending a system, so the final product fits how the business actually operates."],
+              ["02", "Designed to convert", "Every page, call-to-action, and user flow is aimed at making the next step easier and more confident for customers."],
+              ["03", "Built to scale", "The tech foundation is clean, maintainable, and ready for future improvements without starting over."],
+            ].map(([number, title, copy]) => (
+              <article key={number}>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -202,6 +249,30 @@ export default function HomeRestored() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="container">
+          <div className="section-title">
+            <p className="eyebrow">Client feedback</p>
+            <h2>Proof that the experience translates into calmer operations.</h2>
+          </div>
+
+          <div className="case-layout">
+            {testimonials.map((testimonial) => (
+              <article key={testimonial.name} className="case-detail">
+                <p className="eyebrow">{testimonial.context}</p>
+                <h3>“{testimonial.quote}”</h3>
+                <div className="case-meta">
+                  <div>
+                    <span>Client</span>
+                    <strong>{testimonial.name}</strong>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="cta-band home-final-cta">
         <div className="container">
           <p className="eyebrow">Ready when you are</p>
@@ -212,7 +283,7 @@ export default function HomeRestored() {
 
           <div className="hero-actions">
             <Link className="button button-light" to="/contact">Start a project</Link>
-            <Link className="button button-ghost" to="/demos">Explore demos</Link>
+            <Link className="button button-ghost" to="/services">Explore services</Link>
           </div>
         </div>
       </section>

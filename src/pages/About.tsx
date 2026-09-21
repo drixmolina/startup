@@ -101,12 +101,12 @@ export default function About() {
         <section className="about-section about-founder">
           <div className="container about-founder-grid">
             <div className="about-founder-visual">
-              <img src="/images/drix-hero-mobile.jpeg" alt="Drix Molina, founder of DM Digital Solutions" />
+              <img src="/images/drix-hero-mobile.jpeg" alt="Drix Molina, founder and lead developer at DM Digital Solutions" />
             </div>
             <div className="about-founder-content">
               <p className="eyebrow">Founder</p>
               <h2>Drix Molina</h2>
-              <p className="about-founder-role">Founder &amp; Full-Stack Developer</p>
+              <p className="about-founder-role">Founder &amp; Lead Full-Stack Developer</p>
               <p>
                 Drix Molina is the founder of DM Digital Solutions and an Information Technology graduate specializing in Web and Mobile Application development.
               </p>
@@ -123,10 +123,10 @@ export default function About() {
                 <div>
                   <p className="eyebrow">Selected work</p>
                   <h3>See the work behind the founder.</h3>
-                  <p>Explore Drix Molina&apos;s development projects, technical experience, and selected work.</p>
+                  <p>Review Drix Molina&apos;s development practice, selected systems, and practical digital product work.</p>
                 </div>
                 <div className="about-actions">
-                  <a className="button" href="https://webfolio-dm.vercel.app/" target="_blank" rel="noopener noreferrer">View portfolio</a>
+                  <a className="button" href="https://webfolio-dm.vercel.app/" target="_blank" rel="noopener noreferrer">View founder portfolio</a>
                   <Link className="button button-secondary" to="/contact">Start a project</Link>
                 </div>
               </div>
